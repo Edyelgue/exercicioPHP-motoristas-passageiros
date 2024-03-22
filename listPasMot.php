@@ -33,7 +33,15 @@ for ($i = 0; $i < $numPessoas; $i++) {
 				do {
 					echo "Qual a categoria da sua habilitação? ";
 					$listPessoas[$i]['CNH'] = trim(fgets(STDIN));
-				} while ($categoriasCNH[0] !== $listPessoas[$i]['CNH'] && $categoriasCNH[1] !== $listPessoas[$i]['CNH'] && $categoriasCNH[2] !== $listPessoas[$i]['CNH'] && $categoriasCNH[3] !== $listPessoas[$i]['CNH'] && $categoriasCNH[4] !== $listPessoas[$i]['CNH'] && $categoriasCNH[5] !== $listPessoas[$i]['CNH'] && $categoriasCNH[6] !== $listPessoas[$i]['CNH'] && $categoriasCNH[7] !== $listPessoas[$i]['CNH'] && $categoriasCNH[8] !== $listPessoas[$i]['CNH']);
+				} while ($categoriasCNH[0] !== $listPessoas[$i]['CNH'] && 
+						 $categoriasCNH[1] !== $listPessoas[$i]['CNH'] && 
+						 $categoriasCNH[2] !== $listPessoas[$i]['CNH'] && 
+						 $categoriasCNH[3] !== $listPessoas[$i]['CNH'] && 
+						 $categoriasCNH[4] !== $listPessoas[$i]['CNH'] && 
+						 $categoriasCNH[5] !== $listPessoas[$i]['CNH'] && 
+						 $categoriasCNH[6] !== $listPessoas[$i]['CNH'] && 
+						 $categoriasCNH[7] !== $listPessoas[$i]['CNH'] && 
+						 $categoriasCNH[8] !== $listPessoas[$i]['CNH']);
 			}
 		} else {
 			echo "Menores de 18 anos deverão comprovar filiação! ";
