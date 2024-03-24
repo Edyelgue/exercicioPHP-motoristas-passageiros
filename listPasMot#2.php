@@ -93,12 +93,15 @@ for ($i = 0; $i < $numPessoas; $i++) {
 	$idPessoa = $i + 1;
 
 	echo "Digite seu nome: ";
-	$nome[$i] = trim(fgets(STDIN));
+	$nome = trim(fgets(STDIN));
+
+	echo "Digite seu email: ";
+	$email = trim(fgets(STDIN));
 
 	do {
 		echo "Digite sua idade: ";
-		$idade[$i] = intval(trim(fgets(STDIN)));
-	} while (!is_numeric($idade));
+		$idade = trim(fgets(STDIN));
+	} while (!is_numeric($idade) || $idade <= 0);
 
 	if ($idade >= 18) {
 		do {
@@ -107,14 +110,45 @@ for ($i = 0; $i < $numPessoas; $i++) {
 		} while ($resposta != 'S' && $resposta != 'N');
 
 		if ($resposta == 'S') {
-			echo "$nome, qual a categoria da sua habilitação? ";
-			$categoria[$i] = strtoupper(trim(fgets(STDIN)));
+			do {
+				echo "$nome, qual a categoria da sua habilitação? ";
+				$categoria = strtoupper(trim(fgets(STDIN)));
+			} while ($categoria !== 'A' && 
+					 $categoria !== 'B' && 
+					 $categoria !== 'C' && 
+					 $categoria !== 'D' && 
+					 $categoria !== 'E' && 
+					 $categoria !== 'AB' && 
+					 $categoria !== 'AC' && 
+					 $categoria !== 'AD' && 
+					 $categoria !== 'AE');
+
+			$matriz[$i] = new Motorista();
+			$matriz[$i]->setNome($nome);
+			$matriz[$i]->setEmail($email);
+			$matriz[$i]->setIdade($idade);
+			$matriz[$i]->setCnh($categoria);
+
+		} elseif ($resposta == 'N') {
+			$matriz[$i] = new Passageiro();
+			$matriz[$i]->setNome($nome);
+			$matriz[$i]->setEmail($email);
+			$matriz[$i]->setIdade($idade);
 		}
+	} else {
+		echo "Menores de 18 anos de idade deverão informar os nomes dos pais ou responsáveis.\n";
+		echo "Digite o nome de seu pai: ";
+		$pai = trim(fgets(STDIN));
+		echo "Digite o nome de sua mãe: ";
+		$mae = trim(fgets(STDIN));
+
+		$matriz[$i] = new Passageiro();
+		$matriz[$i]->setNome($nome);
+		$matriz[$i]->setEmail($email);
+		$matriz[$i]->setIdade($idade);
+		$matriz[$i]->setPai($pai);
+		$matriz[$i]->setMae($mae);
 	}
 }
 
-$nome = new Motorista();
-$nome->set_nome('Edyelgue');
-print($nome->get_nome() . "\n");
-
-print_r($motorista);
+print_r($matriz);
