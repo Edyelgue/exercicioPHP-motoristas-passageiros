@@ -1,0 +1,1 @@
+# abstract => não permite que a class seja instanciada

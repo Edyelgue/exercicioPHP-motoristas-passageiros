@@ -1,87 +1,6 @@
 <?php
-
-class Motorista{
-
-	// Propriedades ou atributos
-	private $nome;
-	private $email;
-	private $idade;
-	private $cnh;
-
-	// Métodos ou funções
-	// setters
-	public function setNome($nome){
-		$this->nome = $nome;
-	}
-	public function setEmail($email){
-		$this->email = $email;
-	}
-	public function setIdade($idade){
-		$this->idade = $idade;
-	}
-	public function setCnh($cnh){
-		$this->cnh = $cnh;
-	}
-	// getters
-	public function getNome(){
-		return $this->nome;
-	}
-	public function getEmail(){
-		return $this->email;
-	}
-	public function getIdade(){
-		return $this->idade;
-	}
-	public function getCnh(){
-		return $this->cnh;
-	}
-}
-
-class Passageiro{
-
-	// Propriedades ou atributos
-	private $nome;
-	private $email;
-	private $idade;
-	private $pai;
-	private $mae;
-
-	// Métodos ou funções
-	// setters
-	public function setNome($nome){
-		$this->nome = $nome;
-	}
-	public function setEmail($email){
-		$this->email = $email;
-	}
-	public function setIdade($idade){
-		$this->idade = $idade;
-	}
-	public function setPai($pai){
-		$this->pai = $pai;
-	}
-	public function setMae($mae){
-		$this->mae = $mae;
-	}
-
-	// getters
-	public function getNome(){
-		return $this->nome;
-	}
-	public function getEmail(){
-		return $this->email;
-	}
-	public function getIdade(){
-		return $this->idade;
-	}
-	public function getPai(){
-		return $this->pai;
-	}
-	public function getMae(){
-		return $this->mae;
-	}
-
-}
+include_once 'class.motorista.php';
+include_once 'class.passageiro.php';
 
 // Pergunte ao usuário quantas pessoas serão informadas
 do {
@@ -123,17 +42,11 @@ for ($i = 0; $i < $numPessoas; $i++) {
 					 $categoria !== 'AD' && 
 					 $categoria !== 'AE');
 
-			$matriz[$i] = new Motorista();
-			$matriz[$i]->setNome($nome);
-			$matriz[$i]->setEmail($email);
-			$matriz[$i]->setIdade($idade);
+			$matriz[$i] = new Motorista($nome, $email, $idade);
 			$matriz[$i]->setCnh($categoria);
 
 		} elseif ($resposta == 'N') {
-			$matriz[$i] = new Passageiro();
-			$matriz[$i]->setNome($nome);
-			$matriz[$i]->setEmail($email);
-			$matriz[$i]->setIdade($idade);
+			$matriz[$i] = new Passageiro($nome, $email, $idade);
 		}
 	} else {
 		echo "Menores de 18 anos de idade deverão informar os nomes dos pais ou responsáveis.\n";
@@ -142,10 +55,7 @@ for ($i = 0; $i < $numPessoas; $i++) {
 		echo "Digite o nome de sua mãe: ";
 		$mae = trim(fgets(STDIN));
 
-		$matriz[$i] = new Passageiro();
-		$matriz[$i]->setNome($nome);
-		$matriz[$i]->setEmail($email);
-		$matriz[$i]->setIdade($idade);
+		$matriz[$i] = new Passageiro($nome, $email, $idade);				
 		$matriz[$i]->setPai($pai);
 		$matriz[$i]->setMae($mae);
 	}
